@@ -61,6 +61,7 @@ class Start
 
     if lives == 0
       puts "Player#{@player_turn} has died (and sucks at math)"
+      puts "The score was P1:#{@player1.lives}/3 to P2:#{@player2.lives}/3"
       puts "----- GAME OVER -----"
       exit(0)
     end
