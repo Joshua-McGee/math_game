@@ -1,4 +1,5 @@
 
+#creates a player
 class Player
   #updates and reads the player attributs
   attr_accessor :name, :lives 
@@ -10,6 +11,7 @@ class Player
 
 end
 
+# used to create and sum random numbers
 class Question
   # sends the numbers data and sum of the numbers each time its created
   attr_accessor :num1, :num2, :sum
@@ -23,23 +25,22 @@ class Question
   
 end
 
-
-
+# Main logic for the game
 class Start
   
- 
   def initialize
     #create our classes
     @player1 = Player.new('Player1', 3)
     @player2 = Player.new('Player2', 3)
-    @player_turn = 1
-    #@question = Question.new
-    
+    @player_turn = 1    
   end
 
+  #containes the logic for the game and player input
   def ask_q
-    #containes the logic for the game and player input
+    #keep asking questions as long as players have lives
     while @player1.lives || @player2.live != 0
+
+      #creats a new Question for player1
       @question = Question.new
       if @player_turn == 1
           puts "#{@player1.name}: What does #{@question.num1} plus #{@question.num2} equal?"
@@ -56,11 +57,13 @@ class Start
           end
 
       elsif @player_turn == 2
+        #creates new question for player 2
         @question = Question.new
         puts "#{@player2.name}: What does #{@question.num1} plus #{@question.num2} equal?"
         print "> "
         choice = gets.chomp
 
+        # if correct dont deduct lives and switch to player 1 else -1 life
         if choice == "#{@question.sum}"
           puts "Correct!, time to switch"
           @player_turn -= 1
