@@ -15,9 +15,11 @@ class Start
     #keep asking questions as long as players have lives
     while @player1.lives || @player2.live != 0
 
-      #creats a new Question for player1
-      @question = Question.new
       if @player_turn == 1
+        #creats a new Question for player1
+        @question = Question.new
+        puts "--- NEW TURN ---"
+
           puts "#{@player1.name}: What does #{@question.num1} plus #{@question.num2} equal?"
           print "> "
           choice = gets.chomp
@@ -30,8 +32,10 @@ class Start
             wrong(@player1.lives)
             @player_turn += 1
           end
+          puts "P1: #{@player1.lives}/3 vs P2 #{@player2.lives}/3"
 
       elsif @player_turn == 2
+        puts "--- NEW TURN ---"
         #creates new question for player 2
         @question = Question.new
         puts "#{@player2.name}: What does #{@question.num1} plus #{@question.num2} equal?"
@@ -47,6 +51,7 @@ class Start
           wrong(@player2.lives)
           @player_turn -= 1
         end
+        puts "P1: #{@player1.lives}/3 vs P2 #{@player2.lives}/3"
       end
     end
   end
@@ -55,7 +60,8 @@ class Start
   def wrong(lives)
 
     if lives == 0
-      puts "you died (and suck at math)"
+      puts "Player#{@player_turn} has died (and sucks at math)"
+      puts "----- GAME OVER -----"
       exit(0)
     end
     puts "You have #{lives} lives left, time to switch'"
